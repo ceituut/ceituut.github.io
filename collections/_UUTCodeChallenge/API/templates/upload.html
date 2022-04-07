@@ -1,0 +1,28 @@
+<html>
+   <body>
+      <!--start form for upload file-->
+      <form action = "/GetCode" method = "POST" 
+         enctype = "multipart/form-data" id="upload-form">
+         <!--start select language-->
+         <label for="languages">Choose a language:</label>
+         <select name="languages" id="langs" form="upload-form">
+           <option value="cpp">C++</option>
+           <option value="java">Java</option>
+           <option value="python">Python</option>
+           <option value="js">Javascript</option>
+           <option value="go">Go</option>
+           <option value="C#">C#</option>
+           <option value="php">PHP</option>
+           <option value="r">R</option>
+         </select>
+         <!--end select language-->
+         <!--start browse file-->
+         <input type = "file" name = "file" />
+	      <!--end browse file-->
+         <!--start submit file-->
+         <input type = "submit"/>
+         <!--end submit file-->
+      </form>
+      <!--end form for upload file-->   
+   </body>
+</html>

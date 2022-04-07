@@ -1,0 +1,34 @@
+name: get profile image
+
+on:
+  push:
+    branches: [ main ]
+
+
+  workflow_dispatch:
+
+jobs:
+
+  getprofile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+        
+        
+    - name: download profile
+      run: |
+        echo start to download
+        cd events
+        VAR0=$(ls -1 |tail -n2 | head -n1)
+        VAR1="github.com/"
+        VAR2=$(grep github_id "$VAR0" |sed 's/[^"]*"\([^"]*\)".*/\1/')
+        VAR3=".png"
+        VAR4="../images/"
+        if [ -f "$VAR4$VAR2$VAR3" ] ; then echo "The image has already been downloaded" ; else wget "$VAR1$VAR2$VAR3" -P  ../images ; fi
+        
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Download github profile image
